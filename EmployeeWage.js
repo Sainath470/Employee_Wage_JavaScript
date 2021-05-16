@@ -49,4 +49,62 @@ while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < Max_NUM_OF_WORKING_D
 }
 
 let empWage = calculateDailyWage(totalEmpHrs);
-console.log("<-----UC6--->\nTotal Days: " + totalWorkingDays + "\nTotal Hrs:" + totalEmpHrs + "\nEmp Wage: " + empWage);
+
+//----------------Helper Functions-----------------
+
+//UC7A--->
+
+let totalEmpWage = 0;
+function sum(dailyWage){
+        totalEmpWage += dailyWage;
+}
+
+        empDailyWageArray.forEach(sum);
+        console.log("UC7A--->\n Total Days: " + totalWorkingDays + " Total Hrs: " + totalEmpHrs + " Emp Wage: " + empWage);
+
+function totalWages(totalWage, dailyWage){
+        return totalWage + dailyWage;
+}
+console.log("UC7A --->\nEmpWage with reduce: " + empDailyWageArray.reduce(totalWages, 0));
+
+//UC7B----->
+let dailyCount = 0;
+
+let mapDayWithWageArray = new Array();
+
+function mapDayWithWage(dailyWage){
+        dailyCount++;
+        return dailyCount + " = " + dailyWage;
+}
+//UC7C
+function fulltimeWage(dailyWage) {
+        return dailyWage.includes("160");
+ }
+ let fullDayWageArr = mapDayWithWageArray.filter(fulltimeWage);
+ console.log("UC7C- Daily Wage Filter When Fulltime Wage Earned");
+ console.log(fullDayWageArr);
+ 
+//UC7D
+function findFulltimeWage(dailyWage) {
+      return dailyWage.includes("160");
+ }
+ console.log("UC 7D - First time FullTime wage was earned on day :"+ mapDayWithWageArray.find(findFulltimeWage));
+ 
+//UC7E
+function isAllFulltimeWage(dailyWage) {
+      return dailyWage.includes("160");
+ }
+ console.log("UC 7E - check All Elements have FullTime wage :"+ fullDayWageArr.every(isAllFulltimeWage));
+ 
+//UC7F
+function isAnyPartTimeWage(dailyWage) {
+    return dailyWage.includes("80");
+ }
+ console.log("UC 7E - check If Any Part Time wage :"+ mapDayWithWageArray.some(isAnyPartTimeWage));
+ 
+//UC7G
+function totalDaysWorked(numOfDays, dailyWage) {
+      if (dailyWage > 0) return numOfDays+1;
+      return numOfDays;
+ }
+ console.log("UC 7G - Number of Days Emp Worked :"+ empDailyWageArray.reduce(totalDaysWorked, 0));
