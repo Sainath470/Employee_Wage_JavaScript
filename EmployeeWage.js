@@ -39,14 +39,17 @@ function calculateDailyWage(empHrs){
 let totalWorkingDays = 0;
 let totalEmpHrs = 0;
 let empDailyWageArray = new Array();
+let empDailyWageMap = new Map();
 
 while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < Max_NUM_OF_WORKING_DAYS){
         totalWorkingDays++;
         let empCheck  = Math.floor(1+(Math.random() * 10) % 3);
         totalEmpHrs += getWorkingHours(empCheck);
-        empDailyWageArray.push(calculateDailyWage(totalEmpHrs))
-        
+        empDailyWageArray.push(calculateDailyWage(totalEmpHrs));
+        empDailyWageMap.set(totalWorkingDays, calculateDailyWage(totalEmpHrs));
 }
+
+console.log(empDailyWageMap);
 
 let empWage = calculateDailyWage(totalEmpHrs);
 
